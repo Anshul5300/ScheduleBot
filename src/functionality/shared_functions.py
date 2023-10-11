@@ -2,6 +2,7 @@ import os
 import csv
 from pathlib import Path
 from Event import Event
+from Reminder import Reminder
 from datetime import datetime
 from cryptography.fernet import Fernet
 
@@ -134,11 +135,6 @@ def create_event_file(user_id):
         key = check_key(user_id)
         encrypt_file(key , os.path.expanduser("~/Documents") + "/ScheduleBot/Event/" + user_id + ".csv")
 
-
-
-
-
-
 def create_event_tree(user_id):
     """
     Function: create_event_tree
@@ -267,6 +263,116 @@ def delete_event_from_file(user_id, to_remove):
 
     key = check_key(user_id)
     encrypt_file(key, os.path.expanduser("~/Documents") + "/ScheduleBot/Type/" + user_id + "event_types.csv")
+
+
+def create_type_directory():
+    """
+    Function: create_type_directory
+    Description: Creates ScheduleBot type directory in users Documents folder if it doesn't exist
+    Input: None
+    Output: Creates Type folder if it doesn't exist
+    """
+
+    if not os.path.exists(os.path.expanduser("~/Documents/ScheduleBot/Type")):
+        Path(os.path.expanduser("~/Documents/ScheduleBot/Type")).mkdir(parents=True, exist_ok=True)
+
+def create_reminder_directory():
+    """
+    Function: create_reminder_directory
+    Description: Creates ScheduleBot reminder directory in users Documents folder if it doesn't exist
+    Input: None
+    Output: Creates Type folder if it doesn't exist
+    """
+
+    if not os.path.exists(os.path.expanduser("~/Documents/ScheduleBot/Reminder")):
+        Path(os.path.expanduser("~/Documents/ScheduleBot/Reminder")).mkdir(parents=True, exist_ok=True)
+
+
+def create_reminder_file(user_id):
+    """
+    Function: create_reminder_file
+    Description: Checks if the reminder file exists, and creates it if it doesn't
+    Input:
+        user_id - String representing the Discord ID of the user
+    Output: Creates the reminder file if it doesn't exist
+    """
+    if not os.path.exists(os.path.expanduser("~/Documents") + "/ScheduleBot/Reminder/" + user_id + "reminder.csv"):
+        with open(
+            os.path.expanduser("~/Documents") + "/ScheduleBot/Reminder/" + user_id + "reminder.csv",
+            "x",
+            newline="",
+        ) as new_file:
+            csvwriter = csv.writer(new_file, delimiter=",")
+            csvwriter.writerow(["Description", "Time"])
+        key = check_key(user_id)
+        encrypt_file(key, os.path.expanduser("~/Documents") + "/ScheduleBot/Reminder/" + user_id + "reminder.csv")
+
+
+def create_reminder_tree(user_id):
+    """
+    Function: create_reminder_tree
+    Description: Checks if the reminder directory and file exists, and creates them if they don't
+    Input:
+        user_id - String representing the Discord ID of the user
+    Output: Creates the reminder folder and file if they don't exist
+    """
+    create_reminder_directory()
+    create_reminder_file(user_id)
+
+
+def read_reminder_file(user_id):
+    """
+    Function: read_reminder_file
+    Description: Reads the reminder file
+    for those reminder
+    Input:
+        user_id - String representing the Discord ID of the user
+    Output:
+        rows - List of rows
+    """
+
+    key = load_key(user_id)
+    decrypt_file(key, os.path.expanduser("~/Documents") + "/ScheduleBot/Reminder/" + user_id + "reminder.csv")
+
+
+    # Opens the event type file
+    with open(
+        os.path.expanduser("~/Documents") + "/ScheduleBot/Reminder/" + user_id + "reminder.csv", "r"
+    ) as type_lines:
+        type_lines = csv.reader(type_lines, delimiter=",")
+        current_row = []
+        rows = []
+        for line in type_lines:
+            for text in line:
+                current_row.append(text)
+            rows.append(current_row)
+            current_row = []
+
+    encrypt_file(key, os.path.expanduser("~/Documents") + "/ScheduleBot/Reminder/" + user_id + "reminder.csv")
+    return rows
+
+
+def turn_reminder_to_string(user_id):
+    """
+    Function: turn_types_to_string
+    Description: Reads the event types file and turns all of them into a formatted string
+    Input:
+        user_id - String representing the Discord ID of the user
+    Output:
+        output - Formatted string of rows in event types file
+    """
+    output = ""
+    space = [12, 5]
+    rows = read_type_file(user_id)
+    line_number = 0
+    for i in rows:
+        if line_number != 0:
+            output += f"{i[0]:<{space[0]}}{i[1]:<{space[1]}}\n"
+        line_number += 1
+    return output
+
+
+
 
 
 def create_key_directory():

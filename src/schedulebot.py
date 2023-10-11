@@ -1,11 +1,12 @@
 import discord  # type: ignore
-from discord.ext import commands  # type: ignore
+from discord.ext import commands,tasks  # type: ignore
 import os
 import json
 
 from discord.ext.commands.help import MinimalHelpCommand
 
 from functionality.AddEvent import add_event  # type: ignore
+from functionality.AddReminder import add_reminder
 from functionality.highlights import get_highlight
 from functionality.create_event_type import create_event_type
 from functionality.FindAvailableTime import find_avaialbleTime
@@ -40,6 +41,7 @@ async def help(ctx):
     )
     em.add_field(name="help", value="Displays all commands and their descriptions", inline=False)
     em.add_field(name="schedule", value="Creates an event", inline=False)
+    em.add_field(name="reminder", value="Creates a reminder", inline=False)
     em.add_field(name="ConnectGoogle", value="Connect to Google Calendar", inline=False)
     em.add_field(name="freetime", value="Displays when you are available today", inline=False)
     em.add_field(name="day", value="Shows everything on your schedule for a specific date\nHere is the format you "
@@ -145,6 +147,21 @@ async def schedule(ctx):
         - A message sent to the context saying an event was successfully created
     """
     await add_event(ctx, bot)
+
+@bot.command()
+async def reminder(ctx):
+    """
+    Function:
+        Reminder
+    Description:
+        Calls the add_reminder function to walk a user through the reminder creation process
+    Input:
+        ctx - Discord context window
+    Output:
+        - A new event added to the user's calendar file
+        - A message sent to the context saying an event was successfully created
+    """
+    await add_reminder(ctx, bot)
 
 @bot.command()
 async def GoogleEvents(ctx):
