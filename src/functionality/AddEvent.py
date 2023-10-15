@@ -188,7 +188,7 @@ async def add_event(ctx, client):
     event_array.append(event_msg)
     dest=event_msg
     print(dest)
-    if event_msg !='None':
+    if event_msg.lower() !='none':
         await channel.send(
             "Do you want to block travel time for this event?(Yes/No)"
         )
@@ -217,27 +217,107 @@ async def add_event(ctx, client):
             add_event_to_file(str(ctx.author.id), current)
             
             
-            
-            
+    
             
         
-    await channel.send("Any additional description you want me to add about the event? If not, enter 'done'")
+    await channel.send("Any additional description you want me to add about the event? If not, enter 'Done'")
     event_msg = await client.wait_for("message", check=check)  # Waits for user input
     event_msg = event_msg.content  # Strips message to just the text the user entered
     if event_msg.lower() == "done":
         event_array.append("")
     else:
         event_array.append(event_msg)
+
+    await channel.send("Do you want this event to repeat daily, weekly, monthly? If no, type no.")
+    event_msg = await client.wait_for("message",check = check)  # Waits for user input
+    event_msg = event_msg.content # Strips message to just the text the user entered
+    #parsed_start_date = datetime.strptime(event_array[1], "%m-%d-%Y %H:%M")
+    #startdate_formatted  = parsed_start_date.strftime("%m/%d/%y")
+    #parsed_end_date = datetime.strptime(event_array[2], "%m-%d-%Y %H:%M")
+    #enddate_formatted  = parsed_end_date.strftime("%m/%d/%y")
+    
+        #event_msg = await client.wait_for("message",check = check)  # Waits for user input
+        #event_msg = event_msg.content # Strips message to just the text the user entered
+        #error_message_shown = False
+        #while not error_message_shown:
+        #    try:
+        #        datetime.strptime(event_msg, '%m/%d/%y')
+        #        await channel.send("Your event will be repeated daily till the given date")
+        #        break
+        #    except:
+        #       if not error_message_shown: 
+        #            await channel.send(
+        #           "Looks like you have entered invalid date"
+        #          +". Please re-enter a valid date in the following format mm/dd/yy \n")  # Handles when user enters non numeric entries
+        #            error_message_shown = True
+        #            event_msg = await client.wait_for("message", check=check)  # Waits for user input
+        #            event_msg = event_msg.content
+            
     
 
 
 
     # Tries to create an Event object from the user input
     try:
-        current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
-        await channel.send("Your event was successfully created!")
-        create_event_tree(str(ctx.author.id))
-        add_event_to_file(str(ctx.author.id), current)
+        if event_msg.lower() == "weekly":
+            await channel.send(
+            "How many weeks do you want this event to recur?\n"
+            )
+            msg_weeks = await client.wait_for("message", check=check)  # Waits for user input
+            num_weeks = int(msg_weeks.content)
+            current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
+            create_event_tree(str(ctx.author.id))
+            add_event_to_file(str(ctx.author.id), current)
+            for i in range(num_weeks):  
+            # Add 7 days to the start_date
+                event_array[1] += timedelta(weeks=1)
+                event_array[2] += timedelta(weeks=1)
+                current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
+                create_event_tree(str(ctx.author.id))
+                add_event_to_file(str(ctx.author.id), current)
+            await channel.send(
+            "This \n"
+            )
+            await channel.send(f"Your events are successfully created and will recurr weekly for the upcoming {num_weeks} weeks!")
+        elif event_msg.lower() == "monthly":
+            await channel.send(
+            "How many months do you want this event to recur?\n"
+            )
+            current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
+            create_event_tree(str(ctx.author.id))
+            add_event_to_file(str(ctx.author.id), current)
+            msg_months = await client.wait_for("message", check=check)  # Waits for user input
+            num_months = int(msg_months.content)
+            for i in range(num_months):  
+            
+                event_array[1] += timedelta(months=1)
+                event_array[2] += timedelta(months=1)
+                current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
+                create_event_tree(str(ctx.author.id))
+                add_event_to_file(str(ctx.author.id), current)
+            await channel.send(f"Your events are successfully created and will recurr monthly for the upcoming {num_months} months!")
+        elif event_msg.lower() == "daily":
+            await channel.send(
+            "How many days do you want this event to recur?\n"
+            )
+            msg_days = await client.wait_for("message", check=check)  # Waits for user input
+            num_days = int(msg_days.content)
+            current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
+            create_event_tree(str(ctx.author.id))
+            add_event_to_file(str(ctx.author.id), current)
+            for i in range(num_days):  
+                event_array[1] += timedelta(days=1)
+                event_array[2] += timedelta(days=1)
+                current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
+                create_event_tree(str(ctx.author.id))
+                add_event_to_file(str(ctx.author.id), current)
+            await channel.send(f"Your events are successfully created and will recurr daily for the upcoming {num_days} days!")
+        
+        elif event_msg.lower() == "no":
+            current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
+            await channel.send("Your event was successfully created!")
+            create_event_tree(str(ctx.author.id))
+            add_event_to_file(str(ctx.author.id), current)
     except Exception as e:
         # Outputs an error message if the event could not be created
         print(e)
