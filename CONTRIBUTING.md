@@ -1,13 +1,13 @@
 # Contributing to ScheduleBot ! 
 Thank you for taking your time for learning how to contribute. Below are some general guidelines and practices that you should keep in mind when contributing to this repository.
 
-We request you to please follow the Code of Conduct that we have created which is located here : https://github.com/SEProjGrp5/ScheduleBot/blob/main/CODE_OF_CONDUCT.md
+We request you to please follow the Code of Conduct that we have created which is located here : https://github.com/Anshul5300/ScheduleBot/blob/main/CODE_OF_CONDUCT.md
 
 ## Before getting started
 Give the following links a read to understand the working of the project and setting up the requirements
 
-1. Check [README.md](https://github.com/SEProjGrp5/ScheduleBot/blob/main/README.md)
-2. Check [requirements.txt](https://github.com/SEProjGrp5/ScheduleBot/blob/main/requirements.txt)
+1. Check [README.md](https://github.com/Anshul5300/ScheduleBot/blob/main/README.md)
+2. Check [https://github.com/Anshul5300/ScheduleBot/blob/main/requirements.txt)
 
 ## Setting Up
 
