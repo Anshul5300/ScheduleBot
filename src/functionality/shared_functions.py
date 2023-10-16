@@ -229,8 +229,7 @@ def add_event_to_file(user_id, current):
 def delete_event_from_file(user_id, to_remove):
     rows = read_event_file(user_id)
     typeRows = read_type_file(user_id)
-    print("Rowns: "+rows.__str__())
-
+    print("Rows: "+rows.__str__())
     for row in rows:
         if to_remove['name'] == row[1]:
             rows.remove(row)
@@ -264,6 +263,68 @@ def delete_event_from_file(user_id, to_remove):
     key = check_key(user_id)
     encrypt_file(key, os.path.expanduser("~/Documents") + "/ScheduleBot/Type/" + user_id + "event_types.csv")
 
+def edit_event_in_file(user_id,to_edit, dt_flag):
+    rows = read_event_file(user_id)
+    print("Rows: "+rows.__str__())
+    current_row_no = 1
+    current = None
+    for row in rows[1:]:
+        if to_edit['Name'] == row[1]:
+            if(dt_flag):
+                try:
+                    dt_start = datetime.strptime(to_edit["StartDate"] + to_edit["StartTime"],"%m/%d/%y%I:%M %p")
+                    dt_end = datetime.strptime(to_edit["EndDate"] + to_edit["EndTime"],"%m/%d/%y%I:%M %p")
+                except ValueError:
+                    dt_start = datetime.strptime(to_edit["StartDate"] + to_edit["StartTime"],"%m/%d/%y%H:%M")
+                    dt_end = datetime.strptime(to_edit["EndDate"] + to_edit["EndTime"],"%m/%d/%y%H:%M")
+                row[2] = dt_start
+                row[3] = dt_end
+            row[4] = to_edit["Priority"]
+            row[5] = to_edit['Type']
+            row[6] = to_edit["Description"]
+            row[7] = to_edit["Location"]
+            current = row
+            break
+        current_row_no += 1
+
+    # Delete the cuurent row if date time change and insert new row
+    # Arrange the event accordingly in the file if date/time changed
+    if(dt_flag):
+        # Delete the current row
+        rows.pop(current_row_no)
+        current = Event(current[1], current[2], current[3], current[4], current[5], current[6], current[7])
+        for i in range(1,len(rows)):
+            temp_event = Event(
+                "",
+                datetime.strptime(rows[i][2], "%Y-%m-%d %H:%M:%S"),
+                datetime.strptime(rows[i][3], "%Y-%m-%d %H:%M:%S"),
+                "",
+                "",
+                "",
+                "",
+            )
+            # If the current Event occurs before the temp Event, insert the current at that position
+            if current < temp_event:
+                rows.insert(i, [""] + current.to_list())
+                break
+
+            # If we have reached the end of the array and not inserted, append the current Event to the array
+            if i == len(rows) - 1:
+                rows.insert(len(rows), [""] + current.to_list())
+                break
+
+    # Open current user's calendar file for writing
+    with open(
+        os.path.expanduser("~/Documents") + "/ScheduleBot/Event/" + user_id + ".csv",
+        "w",
+        newline="",
+    ) as calendar_file:
+        # Write to column headers and array of rows back to the calendar file
+        csvwriter = csv.writer(calendar_file)
+        csvwriter.writerows(rows)
+
+    key = load_key(user_id)
+    encrypt_file(key, os.path.expanduser("~/Documents") + "/ScheduleBot/Event/" + user_id + ".csv")
 
 def create_type_directory():
     """

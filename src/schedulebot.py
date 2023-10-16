@@ -6,6 +6,7 @@ import json
 from discord.ext.commands.help import MinimalHelpCommand
 
 from functionality.AddEvent import add_event  # type: ignore
+from functionality.EditEvent import edit_event
 from functionality.AddReminder import add_reminder
 #import functionality.AddReminder
 from functionality.highlights import get_highlight
@@ -42,6 +43,7 @@ async def help(ctx):
     )
     em.add_field(name="help", value="Displays all commands and their descriptions", inline=False)
     em.add_field(name="schedule", value="Creates an event", inline=False)
+    em.add_field(name="editEvent", value="Edits an event", inline=False)
     em.add_field(name="reminder", value="Creates a reminder", inline=False)
     em.add_field(name="ConnectGoogle", value="Connect to Google Calendar", inline=False)
     em.add_field(name="freetime", value="Displays when you are available today", inline=False)
@@ -148,6 +150,21 @@ async def schedule(ctx):
         - A message sent to the context saying an event was successfully created
     """
     await add_event(ctx, bot)
+
+@bot.command()
+async def editEvent(ctx):
+    """
+    Function:
+        eventedit
+    Description:
+        Calls the edit_event function to walk a user through the event edit process
+    Input:
+        ctx - Discord context window
+    Output:
+        - An already existing event edited to the user's calendar file
+        - A message sent to the context saying an event was successfully edited
+    """
+    await edit_event(ctx, bot)
 
 @bot.command()
 async def reminder(ctx):
