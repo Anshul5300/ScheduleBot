@@ -143,3 +143,6 @@ schedulebot\ copy.py
 
 # .gitignore 
 config.py
+
+bot_env/*
+.DS_Store
