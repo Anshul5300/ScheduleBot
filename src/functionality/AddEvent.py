@@ -6,6 +6,7 @@ from functionality.create_event_type import create_event_type
 from functionality.distance import get_distance
 from datetime import datetime, timedelta
 from parse.match import parse_period24
+import asyncio
 
 
 def check_complete(start, start_date, end, end_date, array):
@@ -231,34 +232,12 @@ async def add_event(ctx, client):
     await channel.send("Do you want this event to repeat daily, weekly, monthly? If no, type no.")
     event_msg = await client.wait_for("message",check = check)  # Waits for user input
     event_msg = event_msg.content # Strips message to just the text the user entered
-    #parsed_start_date = datetime.strptime(event_array[1], "%m-%d-%Y %H:%M")
-    #startdate_formatted  = parsed_start_date.strftime("%m/%d/%y")
-    #parsed_end_date = datetime.strptime(event_array[2], "%m-%d-%Y %H:%M")
-    #enddate_formatted  = parsed_end_date.strftime("%m/%d/%y")
-    
-        #event_msg = await client.wait_for("message",check = check)  # Waits for user input
-        #event_msg = event_msg.content # Strips message to just the text the user entered
-        #error_message_shown = False
-        #while not error_message_shown:
-        #    try:
-        #        datetime.strptime(event_msg, '%m/%d/%y')
-        #        await channel.send("Your event will be repeated daily till the given date")
-        #        break
-        #    except:
-        #       if not error_message_shown: 
-        #            await channel.send(
-        #           "Looks like you have entered invalid date"
-        #          +". Please re-enter a valid date in the following format mm/dd/yy \n")  # Handles when user enters non numeric entries
-        #            error_message_shown = True
-        #            event_msg = await client.wait_for("message", check=check)  # Waits for user input
-        #            event_msg = event_msg.content
-            
-    
-
-
 
     # Tries to create an Event object from the user input
     try:
+        current_datetime = datetime.now()
+        time1 = current_datetime.strftime("%m/%d/%Y %H:%M:%S")
+ 
         if event_msg.lower() == "weekly":
             await channel.send(
             "How many weeks do you want this event to recur?\n"
@@ -268,17 +247,24 @@ async def add_event(ctx, client):
             current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
             create_event_tree(str(ctx.author.id))
             add_event_to_file(str(ctx.author.id), current)
+            time_difference_seconds_array = []
             for i in range(num_weeks):  
             # Add 7 days to the start_date
                 event_array[1] += timedelta(weeks=1)
                 event_array[2] += timedelta(weeks=1)
+                time_difference = event_array[1] - current_datetime
+                time_difference_seconds_array.append(time_difference.total_seconds())
                 current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
                 create_event_tree(str(ctx.author.id))
                 add_event_to_file(str(ctx.author.id), current)
-            await channel.send(
-            "This \n"
-            )
             await channel.send(f"Your events are successfully created and will recurr weekly for the upcoming {num_weeks} weeks!")
+            
+            # Convert time difference to seconds
+            #time_difference_seconds = time_difference.total_seconds()
+            for item in time_difference_seconds_array:
+                await asyncio.sleep(item)
+                await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
+            
         elif event_msg.lower() == "monthly":
             await channel.send(
             "How many months do you want this event to recur?\n"
@@ -296,6 +282,12 @@ async def add_event(ctx, client):
                 create_event_tree(str(ctx.author.id))
                 add_event_to_file(str(ctx.author.id), current)
             await channel.send(f"Your events are successfully created and will recurr monthly for the upcoming {num_months} months!")
+            time_difference = event_array[1] - current_datetime
+            # Convert time difference to seconds
+            time_difference_seconds = time_difference.total_seconds()
+            await asyncio.sleep(time_difference_seconds)
+            await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
+
         elif event_msg.lower() == "daily":
             await channel.send(
             "How many days do you want this event to recur?\n"
@@ -312,12 +304,23 @@ async def add_event(ctx, client):
                 create_event_tree(str(ctx.author.id))
                 add_event_to_file(str(ctx.author.id), current)
             await channel.send(f"Your events are successfully created and will recurr daily for the upcoming {num_days} days!")
+            time_difference = event_array[1] - current_datetime
+            # Convert time difference to seconds
+            time_difference_seconds = time_difference.total_seconds()
+            await asyncio.sleep(time_difference_seconds)
+            await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
         
+
         elif event_msg.lower() == "no":
             current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
             await channel.send("Your event was successfully created!")
             create_event_tree(str(ctx.author.id))
             add_event_to_file(str(ctx.author.id), current)
+            time_difference = event_array[1] - current_datetime
+            # Convert time difference to seconds
+            time_difference_seconds = time_difference.total_seconds()
+            await asyncio.sleep(time_difference_seconds)
+            await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
     except Exception as e:
         # Outputs an error message if the event could not be created
         print(e)
