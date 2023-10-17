@@ -236,14 +236,14 @@ async def add_event(ctx, client):
     # Tries to create an Event object from the user input
     try:
         current_datetime = datetime.now()
-        time1 = current_datetime.strftime("%m/%d/%Y %H:%M:%S")
- 
         if event_msg.lower() == "weekly":
             await channel.send(
             "How many weeks do you want this event to recur?\n"
             )
             msg_weeks = await client.wait_for("message", check=check)  # Waits for user input
             num_weeks = int(msg_weeks.content)
+            time_difference = event_array[1] - current_datetime
+            time_difference_seconds=time_difference.total_seconds()
             current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
             create_event_tree(str(ctx.author.id))
             add_event_to_file(str(ctx.author.id), current)
@@ -252,8 +252,8 @@ async def add_event(ctx, client):
             # Add 7 days to the start_date
                 event_array[1] += timedelta(weeks=1)
                 event_array[2] += timedelta(weeks=1)
-                time_difference = event_array[1] - current_datetime
-                time_difference_seconds_array.append(time_difference.total_seconds())
+                time_difference_arr = event_array[1] - current_datetime
+                time_difference_seconds_array.append(time_difference_arr.total_seconds())
                 current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
                 create_event_tree(str(ctx.author.id))
                 add_event_to_file(str(ctx.author.id), current)
@@ -261,32 +261,46 @@ async def add_event(ctx, client):
             
             # Convert time difference to seconds
             #time_difference_seconds = time_difference.total_seconds()
+            #
+            await asyncio.sleep(time_difference_seconds)
+            await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
+
             for item in time_difference_seconds_array:
                 await asyncio.sleep(item)
                 await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
+                
+                #await ctx.send("Do you want to snooze this reminder: Yes or no?")
+                #msg_snooze = await client.wait_for("message", check=check)  # Waits for user input
+                #snooze = msg_snooze.content
             
         elif event_msg.lower() == "monthly":
             await channel.send(
             "How many months do you want this event to recur?\n"
             )
+            msg_months = await client.wait_for("message", check=check)  # Waits for user input
+            num_months = int(msg_months.content)
+            time_difference = event_array[1] - current_datetime
+            time_difference_seconds=time_difference.total_seconds()
             current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
             create_event_tree(str(ctx.author.id))
             add_event_to_file(str(ctx.author.id), current)
-            msg_months = await client.wait_for("message", check=check)  # Waits for user input
-            num_months = int(msg_months.content)
-            for i in range(num_months):  
             
+            for i in range(num_months): 
                 event_array[1] += timedelta(months=1)
                 event_array[2] += timedelta(months=1)
+                time_difference_arr = event_array[1] - current_datetime
+                time_difference_seconds_array.append(time_difference_arr.total_seconds())
                 current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
                 create_event_tree(str(ctx.author.id))
                 add_event_to_file(str(ctx.author.id), current)
             await channel.send(f"Your events are successfully created and will recurr monthly for the upcoming {num_months} months!")
-            time_difference = event_array[1] - current_datetime
-            # Convert time difference to seconds
-            time_difference_seconds = time_difference.total_seconds()
+            
             await asyncio.sleep(time_difference_seconds)
             await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
+
+            for item in time_difference_seconds_array:
+                await asyncio.sleep(item)
+                await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
 
         elif event_msg.lower() == "daily":
             await channel.send(
@@ -294,21 +308,27 @@ async def add_event(ctx, client):
             )
             msg_days = await client.wait_for("message", check=check)  # Waits for user input
             num_days = int(msg_days.content)
+            time_difference = event_array[1] - current_datetime
+            time_difference_seconds=time_difference.total_seconds()
             current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
             create_event_tree(str(ctx.author.id))
             add_event_to_file(str(ctx.author.id), current)
             for i in range(num_days):  
                 event_array[1] += timedelta(days=1)
                 event_array[2] += timedelta(days=1)
+                time_difference_arr = event_array[1] - current_datetime
+                time_difference_seconds_array.append(time_difference_arr.total_seconds())
                 current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
                 create_event_tree(str(ctx.author.id))
                 add_event_to_file(str(ctx.author.id), current)
             await channel.send(f"Your events are successfully created and will recurr daily for the upcoming {num_days} days!")
-            time_difference = event_array[1] - current_datetime
-            # Convert time difference to seconds
-            time_difference_seconds = time_difference.total_seconds()
+            
             await asyncio.sleep(time_difference_seconds)
             await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
+
+            for item in time_difference_seconds_array:
+                await asyncio.sleep(item)
+                await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
         
 
         elif event_msg.lower() == "no":
