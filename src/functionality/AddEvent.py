@@ -322,7 +322,7 @@ async def add_event(ctx, client):
                 create_event_tree(str(ctx.author.id))
                 add_event_to_file(str(ctx.author.id), current)
             await channel.send(f"Your events are successfully created and will recurr daily for the upcoming {num_days} days!")
-            
+
             await asyncio.sleep(time_difference_seconds)
             await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
 
@@ -341,6 +341,30 @@ async def add_event(ctx, client):
             time_difference_seconds = time_difference.total_seconds()
             await asyncio.sleep(time_difference_seconds)
             await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
+
+            await ctx.send("Do you want to snooze the event? Type 'Yes' if you want to snooze and 'No' if you do not want to.")
+            snooze_msg = await client.wait_for("message", check=check)  # Waits for user input
+            snooze_msg_content = snooze_msg.content
+
+            if snooze_msg_content.lower() == "yes":
+                while event_array[1] + timedelta(minutes=15) < event_array[2]:
+                    event_array[1] += timedelta(minutes=15)
+                    await ctx.send("Your event reminder has been snoozed by 15 minutes. I will remind you about the event again after 15 minutes")
+                    new_start_time_seconds = 15*60
+                    await asyncio.sleep(new_start_time_seconds)
+                    await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
+                    await ctx.send("Do you want to snooze the event again? Type 'Yes' if you want to snooze and 'No' if you do not want to.")
+                    snooze_msg = await client.wait_for("message", check=check)  # Waits for user input
+                    snooze_msg_content = snooze_msg.content
+                    if snooze_msg_content.lower() == "no":
+                        await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
+                        break
+                if event_array[1] + timedelta(minutes=15) > event_array[2]:
+                    await ctx.send("Cannot snooze reminder as event is ending less than 15 minutes later")
+            elif snooze_msg_content.lower() == "no":
+                await ctx.send(f"Reminder: You have an event named {event_array[0]} now!")
+            
+
     except Exception as e:
         # Outputs an error message if the event could not be created
         print(e)
