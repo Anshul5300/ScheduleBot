@@ -56,9 +56,9 @@ async def test_add_event(bot):
 def check_variables1():
     output = {
         "start": False,
-        "start_date": datetime(2021, 9, 29, 21, 30),
+        "start_date": datetime(2023, 10, 19, 18, 30),
         "end": False,
-        "end_date": datetime(2021, 9, 29, 23, 30),
+        "end_date": datetime(2023, 10, 19, 19, 30),
         "array": [],
         #"location": "",
     }
@@ -68,9 +68,9 @@ def check_variables1():
 def check_variables2():
     output = {
         "start": True,
-        "start_date": datetime(2021, 9, 29, 21, 30),
+        "start_date": datetime(2023, 10, 19, 18, 30),
         "end": False,
-        "end_date": datetime(2021, 9, 29, 23, 30),
+        "end_date": datetime(2023, 10, 19, 18, 30),
         "array": [],
         #"location": "None",
     }
@@ -80,9 +80,9 @@ def check_variables2():
 def check_variables3():
     output = {
         "start": True,
-        "start_date": datetime(2021, 9, 29, 21, 30),
+        "start_date": datetime(2023, 10, 19, 18, 30),
         "end": True,
-        "end_date": datetime(2021, 9, 29, 23, 30),
+        "end_date": datetime(2023, 10, 19, 18, 30),
         "array": [],
         #"location": "None",
     }
@@ -92,9 +92,9 @@ def check_variables3():
 def check_variables4():
     output = {
         "start": True,
-        "start_date": datetime(2021, 9, 29, 21, 30),
+        "start_date": datetime(2023, 10, 19, 18, 30),
         "end": True,
-        "end_date": datetime(2021, 9, 29, 23, 30),
+        "end_date": datetime(2023, 10, 19, 18, 30),
         "array": ["Hello"],
         #"location": "None",
     }

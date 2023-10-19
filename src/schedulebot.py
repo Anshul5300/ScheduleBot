@@ -358,7 +358,6 @@ async def freetime(ctx):
 # Runs the bot (local machine)
 if __name__ == "__main__":
     from config import TOKEN
-
     bot.run(TOKEN)
     
 
