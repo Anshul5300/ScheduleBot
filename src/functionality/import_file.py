@@ -101,13 +101,13 @@ def get_ics_data(calendar):
     for component in calendar.walk():
         if component.name == "VEVENT":
             print("Adding Event....")
-            data = data.append({'ID': '',
+            data = pd.concat([data,pd.DataFrame([{'ID': '',
                          'Name': component.get('summary'),
                          'Start Date': str(component.get('dtstart').dt),
                          'End Date': str(component.get('dtend').dt),
                          'Priority': '3',
                          'Type': '',
-                         'Notes': component.get('description')}, ignore_index=True)
+                         'Notes': component.get('description')}])], ignore_index=True)
 
     return data
 

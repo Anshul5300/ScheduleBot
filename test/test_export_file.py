@@ -16,7 +16,8 @@ from functionality.export_file import export_file  # type: ignore
 
 @pytest.fixture
 def client(event_loop):
-    c = discord.Client(loop=event_loop)
+    intents = discord.Intents.default()  # Create an intents object with default settings
+    c = discord.Client(loop=event_loop,intents=intents)
     test.configure(c)
     return c
 
