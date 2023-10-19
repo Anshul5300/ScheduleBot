@@ -146,3 +146,5 @@ config.py
 
 bot_env/*
 .DS_Store
+
+*LIBDATA*
