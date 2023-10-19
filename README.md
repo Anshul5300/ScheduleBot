@@ -275,7 +275,33 @@ User can check their next 10 events in the google calendar
 
 https://user-images.githubusercontent.com/89954066/144730470-7700507e-b2e9-4175-88c0-749c15097702.mp4
 
+🔥: What's new in V4:
+---
 
+https://github.com/Anshul5300/ScheduleBot/assets/58720954/cd0c28c0-1968-46d6-a132-fbe9d16c4823
+
+Following are the new features that we have implemented for version 4 : 
+
+#### 1. Recurring events: 
+We have added the functionality to help user schedule recurring events(daily/weekly/monthly)
+
+https://github.com/Anshul5300/ScheduleBot/assets/58720954/913f4dfe-62ee-4b38-90ef-0617bb3d8d98
+
+#### 2. Reminder: 
+We have added the functionality to remind user when the event starts
+
+https://github.com/Anshul5300/ScheduleBot/assets/58720954/35b067ac-b9b7-4e4c-851e-35b5f8864ef9
+
+#### 3. Snooze Reminder: 
+We have added the functionality to help user snooze a reminder of the event by 15 minutes
+
+https://github.com/Anshul5300/ScheduleBot/assets/58720954/cfbfa4fb-7af7-42f7-8efd-2fa586516e29
+
+#### 4. Edit Event: 
+We have added the functionality to help user edit their event details
+
+#### 5. Delete Event: 
+We have fixed the Delete Event functionality which helps user delete their events
 
 ## Future features
 These are example features that could be added to ScheduleBot in the future.
@@ -295,13 +321,6 @@ When Your entire day is scheduled
 You have event 1 of priority 4
 You try to find time for another event of priority 3
 ScheduleBot should say there is no time, but can suggest replacing event 1 as it has less priority.
-
-### Edit event
-You can edit the event you created:
-
-```
-!eventedit
-```
 
 ### Merge Discord events with Google Calendar
 Try to create a functionality to merge discord events with google calender.
