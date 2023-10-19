@@ -306,6 +306,12 @@ We have fixed the Delete Event functionality which helps user delete their event
 ## Future features
 These are example features that could be added to ScheduleBot in the future.
 
+### Integration with online task management tools
+Provide a functionality of syncing tasks from tools like Trello and ClickUp. It should help the user to push/pull the tasks to/from the tool.
+
+### Collaboration feature
+Add a functionality that allows multiple users to collaborate on a event.
+
 ### Quick event creation
 
 You can quickly create a new event with the command
