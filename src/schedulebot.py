@@ -7,8 +7,6 @@ from discord.ext.commands.help import MinimalHelpCommand
 
 from functionality.AddEvent import add_event  # type: ignore
 from functionality.EditEvent import edit_event
-from functionality.AddReminder import add_reminder
-#import functionality.AddReminder
 from functionality.highlights import get_highlight
 from functionality.create_event_type import create_event_type
 from functionality.FindAvailableTime import find_avaialbleTime
@@ -165,32 +163,6 @@ async def editEvent(ctx):
         - A message sent to the context saying an event was successfully edited
     """
     await edit_event(ctx, bot)
-
-@bot.command()
-async def reminder(ctx):
-    """
-    Function:
-        Reminder
-    Description:
-        Calls the add_reminder function to walk a user through the reminder creation process
-    Input:
-        ctx - Discord context window
-    Output:
-        - A new reminder added to the user's calendar file
-        - A message sent to the context saying a reminder was successfully created
-    """
-    await add_reminder(ctx, bot)
-    bot.loop.create_task(reminder())
-
-#@tasks.loop(seconds=10)  # Checks every 10 seconds, adjust as needed
-#async def before_check_reminders(ctx):
-#    await check_reminders(ctx, bot)
-
-#@check_reminders.before_loop
-#async def before_check_reminders1():
- #   await bot.wait_until_ready()
-
-#check_reminders.start()
 
 
 @bot.command()
