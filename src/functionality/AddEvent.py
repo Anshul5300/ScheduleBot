@@ -229,6 +229,29 @@ async def add_event(ctx, client):
     else:
         event_array.append(event_msg)
 
+    await channel.send("Is this event collaborative? (Yes/No)")
+    event_msg = await client.wait_for("message", check=check)
+    is_collaborative = event_msg.content.lower()
+
+    if is_collaborative == "yes":
+        await channel.send("How many participants are going to be involved?")
+        participants=await client.wait_for("message", check=check)
+        num=int(participants.content)
+        for i in range(num):
+            await channel.send("Enter the user id of the member")
+            
+            user_id_msg = await client.wait_for("message")
+            user_id = int(user_id_msg.content)
+
+            # Fetch the user by their ID. Ensure you handle potential errors here.
+            try:
+                user = await client.fetch_user(user_id)
+                # Construct your invitation message.
+                invitation_message = "You have been invited for an event. The following are the details of the event\n```{}```".format(current)
+                await user.send(invitation_message)
+            except Exception as e:
+                print(f"Error inviting user: {str(e)}")
+
     await channel.send("Do you want this event to repeat daily, weekly, monthly? If no, type no.")
     event_msg = await client.wait_for("message",check = check)  # Waits for user input
     event_msg = event_msg.content # Strips message to just the text the user entered
@@ -501,3 +524,27 @@ async def add_event(ctx, client):
         await channel.send(
             "There was an error creating your event. Make sure your formatting is correct and try creating the event again."
         )
+
+
+    await channel.send("Is this event collaborative? (Yes/No)")
+    event_msg = await client.wait_for("message", check=check)
+    is_collaborative = event_msg.content.lower()
+
+    if is_collaborative == "yes":
+        await channel.send("How many participants are going to be involved?")
+        participants=await client.wait_for("message", check=check)
+        num=int(participants.content)
+        for i in range(num):
+            await channel.send("Enter the user id of the member")
+            
+            user_id_msg = await client.wait_for("message")
+            user_id = int(user_id_msg.content)
+
+            # Fetch the user by their ID. Ensure you handle potential errors here.
+            try:
+                user = await client.fetch_user(user_id)
+                # Construct your invitation message.
+                invitation_message = "You have been invited for an event. The following are the details of the event\n```{}```".format(current)
+                await user.send(invitation_message)
+            except Exception as e:
+                print(f"Error inviting user: {str(e)}")
