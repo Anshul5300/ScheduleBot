@@ -9,7 +9,7 @@ jobs:
       matrix:
         python-version: ["3.9"]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
@@ -20,4 +20,5 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        pylint `ls -R|grep .py$|xargs`
+        find C:\Users\Anshul\Desktop\Fall 2023\NCSU Fall 2023\SE\Proj 2\test -type f -name "*.py" -exec pylint {} \;
+
