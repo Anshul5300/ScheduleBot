@@ -197,7 +197,7 @@ Users can now assign a priority value for each event. This will help them keep t
 
 #### Support 24-hour time format input
 
-We support 24-hour time format input now, in addition to the 12-hour format.
+We support 24-hour time format input, in addition to the 12-hour format.
 
 #### User's files encryption/decryption
 
