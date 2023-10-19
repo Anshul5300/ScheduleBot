@@ -18,7 +18,9 @@ from functionality.AddEvent import check_complete, add_event  # type: ignore
 
 @pytest.fixture
 def client(event_loop):
-    c = discord.Client(loop=event_loop)
+    intents = discord.Intents.default()
+    intents.members = True
+    c = discord.Client(loop=event_loop, intents= intents)
     test.configure(c)
     return c
 
@@ -48,7 +50,7 @@ def bot(request, event_loop):
 
 
 @pytest.mark.asyncio
-async def test_add_event(bot):
+async def test_add_event(bot,client):
     await test.message("!test_add")
     await asyncio.sleep(.25)
 

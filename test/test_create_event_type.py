@@ -16,7 +16,9 @@ from functionality.create_event_type import create_event_type  # type: ignore
 
 @pytest.fixture
 def client(event_loop):
-    c = discord.Client(loop=event_loop)
+    intents = discord.Intents.default()
+    intents.members = True
+    c = discord.Client(loop=event_loop, intents= intents)
     test.configure(c)
     return c
 
@@ -48,6 +50,6 @@ def bot(request, event_loop):
 
 
 @pytest.mark.asyncio
-async def test_import_file(bot):
+async def test_import_file(bot,client):
     await test.message("!test_create")
     await asyncio.sleep(.25)
