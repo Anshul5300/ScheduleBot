@@ -271,14 +271,18 @@ def edit_event_in_file(user_id,to_edit, dt_flag):
     for row in rows[1:]:
         if to_edit['Name'] == row[1]:
             if(dt_flag):
+                new_sdate = datetime.strptime(to_edit["StartDate"],"%m/%d/%y")
+                new_edate = datetime.strptime(to_edit["EndDate"],"%m/%d/%y")
                 try:
-                    dt_start = datetime.strptime(to_edit["StartDate"] + to_edit["StartTime"],"%m/%d/%y%I:%M %p")
-                    dt_end = datetime.strptime(to_edit["EndDate"] + to_edit["EndTime"],"%m/%d/%y%I:%M %p")
+                    new_stime = datetime.strptime(to_edit["StartTime"],"%I:%M %p")
+                    new_etime = datetime.strptime(to_edit["EndTime"],"%I:%M %p")
                 except ValueError:
-                    dt_start = datetime.strptime(to_edit["StartDate"] + to_edit["StartTime"],"%m/%d/%y%H:%M")
-                    dt_end = datetime.strptime(to_edit["EndDate"] + to_edit["EndTime"],"%m/%d/%y%H:%M")
-                row[2] = dt_start
-                row[3] = dt_end
+                    new_stime = datetime.strptime(to_edit["StartTime"],"%H:%M")
+                    new_etime = datetime.strptime(to_edit["EndTime"],"%H:%M")
+                
+                row[2] = datetime(year=new_sdate.year,month=new_sdate.month,day=new_sdate.day,hour=new_stime.hour, minute=new_stime.minute)   
+                row[3] = datetime(year=new_edate.year,month=new_edate.month,day=new_edate.day,
+                                hour=new_etime.hour, minute=new_etime.minute) 
             row[4] = to_edit["Priority"]
             row[5] = to_edit['Type']
             row[6] = to_edit["Description"]
@@ -290,8 +294,9 @@ def edit_event_in_file(user_id,to_edit, dt_flag):
     # Delete the cuurent row if date time change and insert new row
     # Arrange the event accordingly in the file if date/time changed
     if(dt_flag):
-        # Delete the current row
-        rows.pop(current_row_no)
+        # Delete the current row if there are more than 2 rows
+        if(len(rows) > 2):
+            rows.pop(current_row_no)
         current = Event(current[1], current[2], current[3], current[4], current[5], current[6], current[7])
         for i in range(1,len(rows)):
             temp_event = Event(
