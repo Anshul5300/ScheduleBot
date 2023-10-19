@@ -20,6 +20,7 @@ jobs:
 
       - name: Generate coverage report
         run: |
+          pip install --upgrade cffi
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install pytest
           pip install pytest-cov
