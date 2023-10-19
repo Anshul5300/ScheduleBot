@@ -20,5 +20,5 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
-        find C:\Users\Anshul\Desktop\Fall 2023\NCSU Fall 2023\SE\Proj 2\test -type f -name "*.py" -exec pylint {} \;
+        find test -type f -name "*.py" -exec pylint {} \;
 
