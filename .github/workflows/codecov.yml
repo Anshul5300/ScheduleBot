@@ -12,6 +12,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        python-version: [3.9]
     steps:
       - uses: actions/checkout@main
       - uses: codecov/codecov-action@v3
@@ -20,9 +23,9 @@ jobs:
 
       - name: Generate coverage report
         run: |
-          which python
-          which pip
+          pip show cffi
           pip install cffi==1.15.0
+          pip show cff0
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install pytest
           pip install pytest-cov
