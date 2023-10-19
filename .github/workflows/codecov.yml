@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@main
       - uses: codecov/codecov-action@v3
         with:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          CODECOV_TOKEN: ${{c674785f-3749-406d-8e21-a1cf691da440}}
 
       - name: Generate coverage report
         run: |
@@ -29,7 +29,7 @@ jobs:
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         with:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          CODECOV_TOKEN: ${{c674785f-3749-406d-8e21-a1cf691da440}}
           directory: ./coverage/reports/
           env_vars: OS,PYTHON
           fail_ci_if_error: true
