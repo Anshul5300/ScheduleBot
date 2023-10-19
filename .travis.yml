@@ -9,6 +9,10 @@ before_install:
   - "pip install coveralls"
 install:
   - pip install -r requirements.txt
+  env:
+  global:
+    - CODECOV_TOKEN=<c674785f-3749-406d-8e21-a1cf691da440>
+
 # command to run tests
 script:
   - "coverage run --source 'src' -m pytest"
