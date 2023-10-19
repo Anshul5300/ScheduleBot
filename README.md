@@ -297,10 +297,15 @@ We have added the functionality to help user snooze a reminder of the event by 1
 
 https://github.com/Anshul5300/ScheduleBot/assets/58720954/cfbfa4fb-7af7-42f7-8efd-2fa586516e29
 
-#### 4. Edit Event: 
+#### 4. Send event details to other users: 
+We have added the functionality to make events more collaborative by sending event details to other members involved in the event.
+
+https://github.com/Anshul5300/ScheduleBot/assets/91055071/1cf611c4-34d0-4fb2-934b-9d5ba436bba7
+
+#### 5. Edit Event: 
 We have added the functionality to help user edit their event details
 
-#### 5. Delete Event: 
+#### 6. Delete Event: 
 We have fixed the Delete Event functionality which helps user delete their events
 
 ## Future features
