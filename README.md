@@ -317,8 +317,8 @@ These are example features that could be added to ScheduleBot in the future.
 ### Integration with online task management tools
 Provide the functionality of syncing tasks from tools like Trello and ClickUp. It should help the user to push/pull the tasks to/from the tool.
 
-### Collaboration feature
-Add a functionality that allows multiple users to collaborate on an event.
+### Connect Outlook Calendar with Discord Bot
+Add a functionality that allows user to add/sync their Outlook calendar with the Schedule bot.
 
 ### Quick event creation
 
