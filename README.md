@@ -297,12 +297,12 @@ We have added the functionality to help users snooze a reminder of the event by 
 https://github.com/Anshul5300/ScheduleBot/assets/58720954/cfbfa4fb-7af7-42f7-8efd-2fa586516e29
 
 #### 4. Edit Event: 
-We have added the functionality to help user edit their event details
+We have added the functionality to help users edit their event details
 
 https://github.com/Anshul5300/ScheduleBot/assets/40301987/e7c5208c-0a7a-4bfc-9756-36bb937aef00
 
 #### 5. Delete Event: 
-We have fixed the Delete Event functionality which helps user delete their events
+We have fixed the Delete Event functionality which helps users to delete their events
 
 https://github.com/Anshul5300/ScheduleBot/assets/40301987/47310bf4-c56e-406d-87fa-ad6f209c76bc
 
@@ -317,8 +317,8 @@ These are example features that could be added to ScheduleBot in the future.
 ### Integration with online task management tools
 Provide the functionality of syncing tasks from tools like Trello and ClickUp. It should help the user to push/pull the tasks to/from the tool.
 
-### Collaboration feature
-Add a functionality that allows multiple users to collaborate on an event.
+### Connect Outlook Calendar with Discord Bot
+Add a functionality that allows user to add/sync their Outlook calendar with the Schedule bot.
 
 ### Quick event creation
 
