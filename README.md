@@ -278,7 +278,7 @@ User can check their next 10 events in the google calendar
 
 https://user-images.githubusercontent.com/89954066/144730470-7700507e-b2e9-4175-88c0-749c15097702.mp4
 
-🔥: What's new in V4:
+:fire: What's new in V4:
 ---
 
 https://github.com/Anshul5300/ScheduleBot/assets/58720954/cd0c28c0-1968-46d6-a132-fbe9d16c4823
