@@ -16,18 +16,26 @@ jobs:
       - uses: actions/checkout@main
       - uses: codecov/codecov-action@v3
         env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Generate coverage report
         run: |
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install pytest
           pip install pytest-cov
-          pip install coverage
           export PYTHONPATH=src
-          coverage run --source 'src' -m pytest
           pytest --cov=./ --cov-report=xml
-      - name: Upload coverage reports to Codecov
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage/reports/
+          env_vars: OS,PYTHON
+          fail_ci_if_error: true
+          files: ./coverage.xml,
+          flags: unittests
+          name: codecov-umbrella
+          path_to_write_report: ./coverage/codecov_report.txt
+          verbose: true
+
+    
