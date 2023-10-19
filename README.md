@@ -283,17 +283,17 @@ https://github.com/Anshul5300/ScheduleBot/assets/58720954/cd0c28c0-1968-46d6-a13
 Following are the new features that we have implemented for version 4 : 
 
 #### 1. Recurring events: 
-We have added the functionality to help user schedule recurring events(daily/weekly/monthly)
+We have added the functionality to help users schedule recurring events(daily/weekly/monthly)
 
 https://github.com/Anshul5300/ScheduleBot/assets/58720954/913f4dfe-62ee-4b38-90ef-0617bb3d8d98
 
 #### 2. Reminder: 
-We have added the functionality to remind user when the event starts
+We have added the functionality to remind users when the event starts
 
 https://github.com/Anshul5300/ScheduleBot/assets/58720954/35b067ac-b9b7-4e4c-851e-35b5f8864ef9
 
 #### 3. Snooze Reminder: 
-We have added the functionality to help user snooze a reminder of the event by 15 minutes
+We have added the functionality to help users snooze a reminder of the event by 15 minutes
 
 https://github.com/Anshul5300/ScheduleBot/assets/58720954/cfbfa4fb-7af7-42f7-8efd-2fa586516e29
 
@@ -312,10 +312,10 @@ We have fixed the Delete Event functionality which helps user delete their event
 These are example features that could be added to ScheduleBot in the future.
 
 ### Integration with online task management tools
-Provide a functionality of syncing tasks from tools like Trello and ClickUp. It should help the user to push/pull the tasks to/from the tool.
+Provide the functionality of syncing tasks from tools like Trello and ClickUp. It should help the user to push/pull the tasks to/from the tool.
 
 ### Collaboration feature
-Add a functionality that allows multiple users to collaborate on a event.
+Add a functionality that allows multiple users to collaborate on an event.
 
 ### Quick event creation
 
@@ -331,13 +331,13 @@ It will find and schedule the first available X contiguous hours, on your prefer
 When Your entire day is scheduled
 You have event 1 of priority 4
 You try to find time for another event of priority 3
-ScheduleBot should say there is no time, but can suggest replacing event 1 as it has less priority.
+ScheduleBot should say there is no time but can suggest replacing event 1 as it has less priority.
 
 ### Merge Discord events with Google Calendar
-Try to create a functionality to merge discord events with google calender.
+Try to create a functionality to merge discord events with Google Calendar.
 
 ### Replace the current csv format for storing events with Google Calendar
-As of now, the events are stired in a csv format. In the future implementation ,a functionality can be added to store the events in Google Calendar. 
+As of now, the events are stored in a CSV format. In the future implementation,a functionality can be added to store the events in Google Calendar. 
 
 ### Edit google events
 In this project, you can edit the events from discord. For future implemetation, a new functionalty can be created to edit events directly from Google Calendar.
