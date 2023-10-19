@@ -299,8 +299,12 @@ https://github.com/Anshul5300/ScheduleBot/assets/58720954/cfbfa4fb-7af7-42f7-8ef
 #### 4. Edit Event: 
 We have added the functionality to help user edit their event details
 
+https://github.com/Anshul5300/ScheduleBot/assets/40301987/e7c5208c-0a7a-4bfc-9756-36bb937aef00
+
 #### 5. Delete Event: 
 We have fixed the Delete Event functionality which helps user delete their events
+
+https://github.com/Anshul5300/ScheduleBot/assets/40301987/47310bf4-c56e-406d-87fa-ad6f209c76bc
 
 #### 6. Send event details to other users: 
 We have added the functionality to make events more collaborative by sending event details to other members involved in the event.
