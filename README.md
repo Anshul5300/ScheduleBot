@@ -3,7 +3,7 @@
 ![Python v3.9](https://img.shields.io/badge/python-v3.9-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![DOI](https://zenodo.org/badge/703561021.svg)](https://zenodo.org/badge/latestdoi/703561021)
-![example workflow](https://github.com/SEProjGrp5/ScheduleBot/actions/workflows/python-app.yml/badge.svg)
+![example workflow](https://github.com/Anshul5300/ScheduleBot/actions/workflows/python-app.yml/badge.svg)
 ![example workflow](https://github.com/SEProjGrp5/ScheduleBot/actions/workflows/style_checker.yml/badge.svg)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Anshul5300/ScheduleBot)
 [![GitHub issues](https://img.shields.io/github/issues/SEProjGrp5/ScheduleBot)](https://github.com/SEProjGrp5/ScheduleBot/issues)
