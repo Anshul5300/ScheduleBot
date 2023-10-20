@@ -237,6 +237,7 @@ async def add_event(ctx, client):
         await channel.send("How many participants are going to be involved?")
         participants=await client.wait_for("message", check=check)
         num=int(participants.content)
+        current = Event(event_array[0], event_array[1], event_array[2], event_array[3], event_array[4], event_array[6],event_array[5])
         for i in range(num):
             await channel.send("Enter the user id of the member")
             
@@ -526,25 +527,3 @@ async def add_event(ctx, client):
         )
 
 
-    await channel.send("Is this event collaborative? (Yes/No)")
-    event_msg = await client.wait_for("message", check=check)
-    is_collaborative = event_msg.content.lower()
-
-    if is_collaborative == "yes":
-        await channel.send("How many participants are going to be involved?")
-        participants=await client.wait_for("message", check=check)
-        num=int(participants.content)
-        for i in range(num):
-            await channel.send("Enter the user id of the member")
-            
-            user_id_msg = await client.wait_for("message")
-            user_id = int(user_id_msg.content)
-
-            # Fetch the user by their ID. Ensure you handle potential errors here.
-            try:
-                user = await client.fetch_user(user_id)
-                # Construct your invitation message.
-                invitation_message = "You have been invited for an event. The following are the details of the event\n```{}```".format(current)
-                await user.send(invitation_message)
-            except Exception as e:
-                print(f"Error inviting user: {str(e)}")
