@@ -10,8 +10,8 @@
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/Anshul5300/ScheduleBot?display_name=release)](https://github.com/Anshul5300/ScheduleBot/releases)
 [![GitHub all releases](https://img.shields.io/github/downloads/Anshul5300/ScheduleBot/total)](https://github.com/Anshul5300/ScheduleBot/releases)
 [![Platform](https://img.shields.io/badge/platform-discord-blue)](https://discord.com/)
-[![Commits](https://img.shields.io/github/commit-activity/t/Anshul5300/ScheduleBot)
-(https://img.shields.io/github/contributors/Anshul5300/ScheduleBot)
+[![Commits](https://img.shields.io/github/commit-activity/t/Anshul5300/ScheduleBot)]
+[![Contributors](https://img.shields.io/github/contributors/Anshul5300/ScheduleBot)]
 [![codecov](https://codecov.io/gh/Anshul5300/ScheduleBot/graph/badge.svg?token=W9YNWEHQ9D)](https://codecov.io/gh/Anshul5300/ScheduleBot)
 
 
