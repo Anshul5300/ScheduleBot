@@ -50,8 +50,7 @@ To get a list of commands, DM the bot the command:
 
 The bot will reply back you with the list of available commands.
 
-<img width="481" alt="Screen Shot 2021-11-03 at 10 15 04 PM" src="https://user-images.githubusercontent.com/34405372/140246210-6e0f176e-bb49-47ad-88d4-0b9f04ae073d.png">
-
+<img width="283" alt="Screenshot 2023-10-19 at 8 48 09 PM" src="https://github.com/Anshul5300/ScheduleBot/assets/40301987/03d34419-84c3-4118-8f81-6b83e1bc41d2">
 
 ### **Scheduling an event**
 
