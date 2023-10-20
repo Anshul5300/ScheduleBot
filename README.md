@@ -10,7 +10,7 @@
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/SEProjGrp5/ScheduleBot?display_name=release)](https://github.com/SEProjGrp5/ScheduleBot/releases)
 [![GitHub all releases](https://img.shields.io/github/downloads/SEProjGrp5/ScheduleBot/total)](https://github.com/SEProjGrp5/ScheduleBot/releases)
 [![Platform](https://img.shields.io/badge/platform-discord-blue)](https://discord.com/)
-[![codecov](https://codecov.io/gh/SEProjGrp5/ScheduleBot/branch/main/graph/badge.svg?token=Z53J2ZN227)](https://codecov.io/gh/SEProjGrp5/ScheduleBot)
+[![codecov](https://codecov.io/gh/Anshul5300/ScheduleBot/graph/badge.svg?token=W9YNWEHQ9D)(https://codecov.io/gh/Anshul5300/ScheduleBot)
 
 
 # ScheduleBot
