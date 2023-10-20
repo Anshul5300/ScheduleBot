@@ -7,7 +7,7 @@
 ![example workflow](https://github.com/Anshul5300/ScheduleBot/actions/workflows/style_checker.yml/badge.svg)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Anshul5300/ScheduleBot)
 [![GitHub issues](https://img.shields.io/github/issues/Anshul5300/ScheduleBot)](https://github.com/Anshul5300/ScheduleBot/issues)
-[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/SEProjGrp5/ScheduleBot?display_name=release)](https://github.com/SEProjGrp5/ScheduleBot/releases)
+[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/Anshul5300/ScheduleBot?display_name=release)](https://github.com/Anshul5300/ScheduleBot/releases)
 [![GitHub all releases](https://img.shields.io/github/downloads/Anshul5300/ScheduleBot/total)](https://github.com/Anshul5300/ScheduleBot/releases)
 [![Platform](https://img.shields.io/badge/platform-discord-blue)](https://discord.com/)
 [![codecov](https://codecov.io/gh/Anshul5300/ScheduleBot/graph/badge.svg?token=W9YNWEHQ9D)](https://codecov.io/gh/Anshul5300/ScheduleBot)
